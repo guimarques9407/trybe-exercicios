@@ -1,6 +1,6 @@
 const calendar = document.getElementById("days");
 const buttonsContainer = document.querySelector(".buttons-container");
-
+const myTasks = document.querySelector(".my-tasks");
 
 function createDaysOfTheWeek() {
   const weekDays = [
@@ -23,8 +23,6 @@ function createDaysOfTheWeek() {
   }
 }
 
-createDaysOfTheWeek();
-
 function createCalendary() {
   const dezDaysList = [
     29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -43,30 +41,48 @@ function createCalendary() {
     calendar.appendChild(calendarDay);
   }
 }
-createCalendary();
 
 function holidayMaker(string) {
   let holidayButton = document.createElement("button");
   holidayButton.id = "btn-holiday";
-  holidayButton.innerText=string
+  holidayButton.innerText = string;
   buttonsContainer.appendChild(holidayButton);
   addColorToHolidays(holidayButton);
 }
 
 function addColorToHolidays(holidayButton) {
-    holidayButton.addEventListener("click",()=>{
-        for(let day of calendar.children){
-            if(day.classList.contains("holiday")){
-                if(day.style.color !== "red"){
-                    day.style.color = "red"
-                }
-                else{
-                    day.style.color = "rgb(119,119,119)" 
-                }
-            }
+  holidayButton.addEventListener("click", () => {
+    for (let day of calendar.children) {
+      if (day.classList.contains("holiday")) {
+        if (day.style.color !== "red") {
+          day.style.color = "red";
+        } else {
+          day.style.color = "rgb(119,119,119)";
         }
-    })
+      }
+    }
+  });
 }
 
-holidayMaker("Feriados");
+function makeFridayButton(weekDay) {
+  let fridayButton = document.createElement("button");
+  fridayButton.id = "btn-friday";
+  fridayButton.innerText = weekDay;
+  buttonsContainer.appendChild(fridayButton);
+}
 
+function addTask(task) {
+  var taskEl = document.createElement("span");
+  taskEl.innerText = task;
+  myTasks.appendChild(taskEl);
+}
+
+function init() {
+  createDaysOfTheWeek();
+  createCalendary();
+  holidayMaker("Feriados");
+  makeFridayButton("Sexta-feira");
+  addTask("cozinhar");
+}
+
+init();

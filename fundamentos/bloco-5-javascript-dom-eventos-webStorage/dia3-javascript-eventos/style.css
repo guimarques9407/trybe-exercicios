@@ -35,6 +35,12 @@
     text-align: center;
     vertical-align: middle;
     width: 13.6%;
+    transition:transform .2s; 
+  }
+
+  .day:hover {
+    transform: scale(1.8); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    cursor:pointer;
   }
   
   .input-container {
